@@ -202,13 +202,21 @@ class Scoreboard {
     }
 
     public Stats computeStatsForGame(int gameIndex) {
+        int[] scoresForAGame = new int[this.studentCount];
         for (int i = 0; i < this.studentCount; i++) {
             Student s = this.students[i];
             int[] allHisScores = s.getScores();
-            int score = allHisScores[gameIndex];
-            System.out.print(score + ", ");
+             scoresForAGame[i] = allHisScores[gameIndex];
+            
         }
-        return null;
+        //compute min, max , avg
+        int min = Utilities.findMinScore(gameIndex, students);//
+        int max = Utilities.findMaxScore(gameIndex, students);
+        double avg = Utilities.findAverage(gameIndex, students);
+        
+        Stats myStats = new Stats(min, max, avg);
+        
+        return myStats;
 
     }
 //        int[] ns1 = {120 , 95 , 88 , 77 , 130 , 90 , 100 , 85 , 93 , 110};
