@@ -210,9 +210,9 @@ class Scoreboard {
             
         }
         //compute min, max , avg
-        int min = Utilities.findMinScore(gameIndex, students);//
-        int max = Utilities.findMaxScore(gameIndex, students);
-        double avg = Utilities.findAverage(gameIndex, students);
+        int min = Utilities.findMinMin( scoresForAGame);//
+        int max = Utilities.findMaxMax(scoresForAGame);
+        double avg = Utilities.findAvgAvg(scoresForAGame);
         
         Stats myStats = new Stats(min, max, avg);
         

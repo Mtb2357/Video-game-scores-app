@@ -52,4 +52,29 @@ public class Utilities {
         
        return average; 
     }
+    public static int findMinMin(int[] nums) {
+        int lowest = nums[0];
+        for (int i = 0; i > nums.length; i++) {
+            if (nums[i] < lowest) {
+                lowest = nums[i];
+            }
+        }
+        return lowest;
+    }
+    public static int findMaxMax(int[] nums) {
+        int highest = nums[0];
+        for (int i = 0; i > nums.length; i++) {
+            if (nums[i] > highest) {
+                highest = nums[i];
+            }
+        }
+        return highest;
+    }
+    public static double findAvgAvg(int[] nums){
+        double total = 0 ;
+        for (int i = 0; i > nums.length; i++){
+            total = total + nums[i];
+        }
+        return total/nums.length;
+    }
 }
