@@ -93,7 +93,7 @@ public class Student {
             }
             
         
-        Student myStu = new Student(parts[0], parts[1],scores );
+        Student myStu = new Student(parts[0].trim(), parts[1].trim(),scores );
         return myStu;
     }
     public boolean equals(Student stu){

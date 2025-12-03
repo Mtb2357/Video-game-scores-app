@@ -56,6 +56,7 @@ public class VideoGamesScoresApp {
         
         Scanner key = new Scanner(System.in);
         Scoreboard myScoreboard = new Scoreboard();
+        //myScoreboard.setStudentCount(10);
         myScoreboard.loadGames("C:\\Users\\mtb23\\Escritorio\\asdf\\java\\VideoGamesScoresApp\\src\\videogamesscoresapp\\games.txt");
         myScoreboard.loadScores("C:\\Users\\mtb23\\Escritorio\\asdf\\java\\VideoGamesScoresApp\\src\\videogamesscoresapp\\scores.txt");
         int[] num = {120 , 95 , 88 , 77 , 130 , 90 , 100 , 85 , 93 , 110};
@@ -83,22 +84,22 @@ public class VideoGamesScoresApp {
                 handleListStudents(myScoreboard);
                 break;
             case 3:
-                handleStudentReport();
+                handleStudentReport(myScoreboard);
                 break;
             case 4:
-                handleTopNforAgame();
+                handleTopNforAgame(myScoreboard);
                 break;
             case 5:
-                updateStudentScore();
+                updateStudentScore(myScoreboard);
                 break;
             case 6:
-                handleGameStats();
+                handleGameStats(myScoreboard);
                 break;
             case 7:
-                handleAddNewStudent();
+                handleAddNewStudent(myScoreboard);
                 break;
             case 8:
-                handleSaveData();
+                handleSaveData(myScoreboard);
                 break;
         }
             
@@ -123,36 +124,68 @@ public class VideoGamesScoresApp {
     
     
     public static void handleListGames(Scoreboard sb) {
-        System.out.print("Handling list game choice");
+        System.out.println("Handling list game choice");
         sb.listGames();
     }
 
     public static void handleListStudents(Scoreboard sb) {
-        System.out.print("Handling list student choice ");
+        System.out.println("Handling list student choice ");
         sb.listScores();
     }
 
-    public static void handleStudentReport() {
-        System.out.print("Handling list student report choice");
+    public static void handleStudentReport(Scoreboard sb) {
+        Scanner key = new Scanner(System.in);
+        System.out.println("Handling list student report choice");
+         
+        sb.listScores();
+        System.out.print("Enter student ID? : ");
+        String id = key.nextLine();
+        
+        Student sss = sb.findStudentById(id);
+        System.out.println("Report for " +  sss.getName() + "(" + sss.getId() + ")");
+        int[] score = sss.getScores();
+        Game[] listOfGames = sb.getGames();
+        for(int i = 0 ; i< score.length; i++){
+            System.out.println(listOfGames[i].getTitle() + ": " + sss.getScores()[i]);
+            
+            
+        }
+        System.out.println("Total : " + sss.getTotal());
+            System.out.println("Average : " +sss.getAverage());
     }
 
-    public static void handleTopNforAgame() {
+    public static void handleTopNforAgame(Scoreboard sb) {
         System.out.print("Handling top N for a game choice");
+        sb.listGames();
+        Scanner key = new Scanner(System.in);
+        System.out.print("Enter the game ID");
+
+        int id = key.nextInt();
+        System.out.print("Enter the top");
+        int top = key.nextInt();
+        int[] allScores = sb.findStudentScoresForAGame(id);
+        int[] allScoresSorted = Utilities.selectionSort(allScores);
+
+        for (int i = 0; i < top; i++) {
+            int j = sb.getStudentCount() - i - 1;
+            System.out.println(allScoresSorted[j]);
+        }
     }
 
-    public static void updateStudentScore() {
+    public static void updateStudentScore(Scoreboard sb) {
         System.out.print("Handling update student score choice");
+        
     }
 
-    public static void handleGameStats() {
+    public static void handleGameStats(Scoreboard sb) {
         System.out.print("Handling list game stats choice");
     }
 
-    public static void handleAddNewStudent() {
+    public static void handleAddNewStudent(Scoreboard sb) {
         System.out.print("Handling new student choice");
     }
 
-    public static void handleSaveData() {
+    public static void handleSaveData(Scoreboard sb) {
         System.out.print("Handling save data choice");
     }
     

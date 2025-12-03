@@ -166,7 +166,7 @@ class Scoreboard {
         Student s = null;
         for (int i = 0; i < this.studentCount; i++) {
             Student ss = this.students[i];
-            if (id.equals(ss.getId())) {
+            if (id.equalsIgnoreCase(ss.getId())) {
                 s = ss;
                 break;
             }
@@ -219,6 +219,22 @@ class Scoreboard {
         return myStats;
 
     }
+//    public int[] findAllScores(){
+//    
+//    
+//    return 1;
+//    }
+    public int[] findStudentScoresForAGame(int gameIndex){
+    
+        int[] scoresForAGame = new int[this.studentCount];
+        for (int i = 0; i < this.studentCount; i++) {
+            Student s = this.students[i];
+            int[] allHisScores = s.getScores();
+             scoresForAGame[i] = allHisScores[gameIndex];
+            
+        }
+        return scoresForAGame;
+    }
 //        int[] ns1 = {120 , 95 , 88 , 77 , 130 , 90 , 100 , 85 , 93 , 110};
 //        int[] ns2 = {140 , 82 , 91 , 89 , 121 , 102 , 111 , 88 , 95 , 97};
 //        int[] ns3 = {98 , 110 , 105 , 99 , 87 , 120 , 115 , 92 , 101 , 108};
@@ -235,6 +251,10 @@ class Scoreboard {
         Stats myStats = new Stats(minScore, maxScore,avg );
 
         return myStats;
+    }
+    
+    public void showTopNForAGame(int gameIndex, int n){
+    
     }
 
 }
